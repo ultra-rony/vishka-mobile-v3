@@ -20,7 +20,7 @@ class IikoRemoteDataSourceImpl implements IikoRemoteDataSource {
     _dio.options.headers['Cache-Control'] = 'no-cache';
     _dio.options.headers['Connection'] = 'keep-alive';
     return await _dio.post(
-      '${Constants.iiKoBaseUrl}api/1/access_token',
+      '${Constants.iiKoBaseUrl}/api/1/access_token',
       data: {'apiLogin': Constants.iikoApiKey},
     );
   }
@@ -30,7 +30,7 @@ class IikoRemoteDataSourceImpl implements IikoRemoteDataSource {
     _dio.options.headers['Content-Type'] = 'application/json';
     _dio.options.headers['Authorization'] = 'Bearer $token';
     return await _dio.post(
-      '${Constants.iiKoBaseUrl}api/1/stop_lists',
+      '${Constants.iiKoBaseUrl}/api/1/stop_lists',
       data: {
         'organizationIds': [Constants.iikoOrganizationId],
         "returnSize": false,

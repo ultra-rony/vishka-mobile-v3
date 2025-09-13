@@ -16,6 +16,12 @@ import 'package:logger/logger.dart' as _i974;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:sqflite/sqflite.dart' as _i779;
 import 'package:vishka_front_v3/core/di/register_modules.dart' as _i83;
+import 'package:vishka_front_v3/features/auth/data/data_sources/remote/user_remote_data_source.dart'
+    as _i470;
+import 'package:vishka_front_v3/features/auth/data/repositories/user_repository_impl.dart'
+    as _i25;
+import 'package:vishka_front_v3/features/auth/domain/repositories/user_repository.dart'
+    as _i903;
 import 'package:vishka_front_v3/features/splash/data/data_sources/iiko_remote_data_source.dart'
     as _i4;
 import 'package:vishka_front_v3/features/splash/data/data_sources/vishka_remote_data_source.dart'
@@ -34,6 +40,8 @@ import 'package:vishka_front_v3/features/splash/presentations/cubits/preload_cub
     as _i1044;
 import 'package:vishka_front_v3/shared/use_cases/get_remote_access_token_use_case.dart'
     as _i28;
+import 'package:vishka_front_v3/shared/use_cases/get_remote_iiko_user_use_case.dart'
+    as _i799;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -53,11 +61,17 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i974.Logger>(() => registerModule.logger);
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio(gh<_i974.Logger>()));
+    gh.lazySingleton<_i470.UserRemoteDataSource>(
+      () => _i470.UserRemoteDataSourceImpl(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i4.IikoRemoteDataSource>(
       () => _i4.IikoRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i828.VishkaRemoteDataSource>(
       () => _i828.VishkaRemoteDataSourceImpl(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i903.UserRepository>(
+      () => _i25.UserRepositoryImpl(gh<_i470.UserRemoteDataSource>()),
     );
     gh.lazySingleton<_i290.PreloadRepository>(
       () => _i157.PreloadRepositoryImpl(
@@ -71,6 +85,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
         gh<_i974.Logger>(),
       ),
+    );
+    gh.factory<_i799.GetRemoteIikoUserUseCase>(
+      () => _i799.GetRemoteIikoUserUseCase(gh<_i903.UserRepository>()),
     );
     gh.factory<_i446.CheckRemoteAppVersionUseCase>(
       () => _i446.CheckRemoteAppVersionUseCase(gh<_i290.PreloadRepository>()),
@@ -88,6 +105,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i191.GetRemoteNomenclatureUseCase>(),
         gh<_i28.GetRemoteAccessTokenUseCase>(),
         gh<_i74.GetRemoteStopListUseCase>(),
+        gh<_i799.GetRemoteIikoUserUseCase>(),
       ),
     );
     return this;

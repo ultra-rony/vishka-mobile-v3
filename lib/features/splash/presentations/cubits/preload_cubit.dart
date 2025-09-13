@@ -8,6 +8,7 @@ import 'package:vishka_front_v3/features/splash/domain/use_cases/get_remote_stop
 import 'package:vishka_front_v3/shared/entities/access_token/access_token_entity.dart';
 import 'package:vishka_front_v3/shared/entities/nomenclature/nomenclature_entity.dart';
 import 'package:vishka_front_v3/shared/use_cases/get_remote_access_token_use_case.dart';
+import 'package:vishka_front_v3/shared/use_cases/get_remote_iiko_user_use_case.dart';
 
 part 'preload_state.dart';
 
@@ -18,6 +19,7 @@ class PreloadCubit extends Cubit<PreloadState> {
   final GetRemoteNomenclatureUseCase _getNomenclatureRemoteUseCase;
   final GetRemoteAccessTokenUseCase _getRemoteAccessTokenUseCase;
   final GetRemoteStopListUseCase _getRemoteStopListUseCase;
+  final GetRemoteIikoUserUseCase _getRemoteIikoUserUseCase;
 
   PreloadCubit(
     this._logger,
@@ -25,6 +27,7 @@ class PreloadCubit extends Cubit<PreloadState> {
     this._getNomenclatureRemoteUseCase,
     this._getRemoteAccessTokenUseCase,
     this._getRemoteStopListUseCase,
+    this._getRemoteIikoUserUseCase,
   ) : super(PreloadInitState());
 
   @override
@@ -44,7 +47,12 @@ class PreloadCubit extends Cubit<PreloadState> {
     try {
       final nomenclature = await _getNomenclatureRemoteUseCase();
       final accessToken = await _getRemoteAccessTokenUseCase();
+      // Стоп лист номенклатуры
       final stopList = await _getRemoteStopListUseCase(params: accessToken.data?.token);
+      // final userInfo = await _getRemoteIikoUserUseCase.call(params: {
+      //   'token': accessToken.data?.token,
+      //   'phone': "+79841056973",
+      // });
       emit(PreloadSuccessState(nomenclature.data, accessToken.data));
     } catch(e) {
       emit(const PreloadErrorState());

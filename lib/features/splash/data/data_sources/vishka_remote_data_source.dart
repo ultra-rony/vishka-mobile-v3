@@ -16,11 +16,11 @@ class VishkaRemoteDataSourceImpl implements VishkaRemoteDataSource {
 
   @override
   Future<Response> fetchAppVersion() async {
-    return await _dio.get('${Constants.apiBaseUrl}v1/version-control');
+    return await _dio.get('${Constants.apiBaseUrl}/v1/version-control');
   }
 
   @override
   Future<Response> fetchNomenclature() async {
-    return await _dio.get('${Constants.apiBaseUrl}v1/nomenclature');
+    return await _dio.get('${Constants.apiBaseUrl}/v1/nomenclature');
   }
 }
