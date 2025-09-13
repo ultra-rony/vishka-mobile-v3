@@ -2,8 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'package:vishka_front_v3/features/auth/domain/user_cases/check_remote_sms_use_case.dart';
-import 'package:vishka_front_v3/features/auth/domain/user_cases/send_remote_phone_use_case.dart';
 import 'package:vishka_front_v3/features/splash/domain/use_cases/check_remote_app_version_use_case.dart';
 import 'package:vishka_front_v3/features/splash/domain/use_cases/get_remote_nomenclature_use_case.dart';
 import 'package:vishka_front_v3/features/splash/domain/use_cases/get_remote_stop_list_use_case.dart';

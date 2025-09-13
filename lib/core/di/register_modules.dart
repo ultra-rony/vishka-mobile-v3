@@ -36,65 +36,65 @@ abstract class RegisterModule {
       await db.execute('''
         CREATE TABLE guests (
             id TEXT PRIMARY KEY,
-            referrer_id TEXT,
+            referrerId TEXT,
             name TEXT,
             surname TEXT,
-            middle_name TEXT,
+            middleName TEXT,
             comment TEXT,
             phone TEXT,
-            culture_name TEXT,
+            cultureName TEXT,
             birthday TEXT,
             email TEXT,
             sex INTEGER,
-            consent_status INTEGER,
+            consentStatus INTEGER,
             anonymized INTEGER,
-            user_data TEXT,
-            should_receive_promo_actions_info INTEGER,
-            should_receive_loyalty_info INTEGER,
-            should_receive_order_status_info INTEGER,
-            personal_data_consent_from TEXT,
-            personal_data_consent_to TEXT,
-            personal_data_processing_from TEXT,
-            personal_data_processing_to TEXT,
-            is_deleted INTEGER,
-            when_registered TEXT,
-            last_processed_order_date TEXT,
-            first_order_date TEXT,
-            last_visited_organization_id TEXT,
-            registration_organization_id TEXT
+            userData TEXT,
+            shouldReceivePromoActionsInfo INTEGER,
+            shouldReceiveLoyaltyInfo INTEGER,
+            shouldReceiveOrderStatusInfo INTEGER,
+            personalDataConsentFrom TEXT,
+            personalDataConsentTo TEXT,
+            personalDataProcessingFrom TEXT,
+            personalDataProcessingTo TEXT,
+            isDeleted INTEGER,
+            whenRegistered TEXT,
+            lastProcessedOrderDate TEXT,
+            firstOrderDate TEXT,
+            lastVisitedOrganizationId TEXT,
+            registrationOrganizationId TEXT
         );
       ''');
       await db.execute('''
-        CREATE TABLE guest_categories (
+        CREATE TABLE categories (
             id TEXT PRIMARY KEY,
-            guest_id TEXT,
+            guestId TEXT,
             name TEXT,
-            is_active INTEGER,
-            is_default_for_new_guests INTEGER,
-            FOREIGN KEY (guest_id) REFERENCES guests(id)
+            isActive INTEGER,
+            isDefaultForNewGuests INTEGER,
+            FOREIGN KEY (guestId) REFERENCES guests(id)
         );
       ''');
       await db.execute('''
-        CREATE TABLE wallet_balances (
+        CREATE TABLE walletBalances (
             id TEXT PRIMARY KEY,
-            guest_id TEXT,
+            guestId TEXT,
             name TEXT,
             type INTEGER,
             balance REAL,
-            FOREIGN KEY (guest_id) REFERENCES guests(id)
+            FOREIGN KEY (guestId) REFERENCES guests(id)
         );
       ''');
       await db.execute('''
         CREATE TABLE cards (
             id TEXT PRIMARY KEY,
-            guest_id TEXT NOT NULL,
+            guestId TEXT NOT NULL,
             track TEXT,
             number TEXT,
-            valid_to_date TEXT,
-            FOREIGN KEY (guest_id) REFERENCES guests(id)
+            validToDate TEXT,
+            FOREIGN KEY (guestId) REFERENCES guests(id)
         );
       ''');
     },
-    version: 1,
+    version: 2,
   );
 }
