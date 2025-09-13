@@ -16,12 +16,22 @@ import 'package:logger/logger.dart' as _i974;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:sqflite/sqflite.dart' as _i779;
 import 'package:vishka_front_v3/core/di/register_modules.dart' as _i83;
+import 'package:vishka_front_v3/features/auth/data/data_sources/remote/auth_remote_data_source.dart'
+    as _i773;
 import 'package:vishka_front_v3/features/auth/data/data_sources/remote/user_remote_data_source.dart'
     as _i470;
+import 'package:vishka_front_v3/features/auth/data/repositories/auth_repository_impl.dart'
+    as _i881;
 import 'package:vishka_front_v3/features/auth/data/repositories/user_repository_impl.dart'
     as _i25;
+import 'package:vishka_front_v3/features/auth/domain/repositories/auth_repository.dart'
+    as _i182;
 import 'package:vishka_front_v3/features/auth/domain/repositories/user_repository.dart'
     as _i903;
+import 'package:vishka_front_v3/features/auth/domain/user_cases/check_remote_sms_use_case.dart'
+    as _i584;
+import 'package:vishka_front_v3/features/auth/domain/user_cases/send_remote_phone_use_case.dart'
+    as _i1012;
 import 'package:vishka_front_v3/features/splash/data/data_sources/iiko_remote_data_source.dart'
     as _i4;
 import 'package:vishka_front_v3/features/splash/data/data_sources/vishka_remote_data_source.dart'
@@ -64,11 +74,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i470.UserRemoteDataSource>(
       () => _i470.UserRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i773.AuthRemoteDataSource>(
+      () => _i773.AuthRemoteDataSourceImpl(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i4.IikoRemoteDataSource>(
       () => _i4.IikoRemoteDataSourceImpl(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i828.VishkaRemoteDataSource>(
       () => _i828.VishkaRemoteDataSourceImpl(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i182.AuthRepository>(
+      () => _i881.AuthRepositoryImpl(gh<_i773.AuthRemoteDataSource>()),
     );
     gh.lazySingleton<_i903.UserRepository>(
       () => _i25.UserRepositoryImpl(gh<_i470.UserRemoteDataSource>()),
@@ -85,6 +101,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i460.SharedPreferences>(),
         gh<_i974.Logger>(),
       ),
+    );
+    gh.factory<_i584.CheckRemoteSmsUseCase>(
+      () => _i584.CheckRemoteSmsUseCase(gh<_i182.AuthRepository>()),
+    );
+    gh.factory<_i1012.SendRemotePhoneUseCase>(
+      () => _i1012.SendRemotePhoneUseCase(gh<_i182.AuthRepository>()),
     );
     gh.factory<_i799.GetRemoteIikoUserUseCase>(
       () => _i799.GetRemoteIikoUserUseCase(gh<_i903.UserRepository>()),
