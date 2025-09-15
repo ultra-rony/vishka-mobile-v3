@@ -10,13 +10,15 @@ final class PreloadInitState extends PreloadState {
 }
 
 final class PreloadSuccessState extends PreloadState {
-  final NomenclatureEntity? nomenclatureEntity;
-  final AccessTokenEntity? accessTokenEntity;
+  final NomenclatureEntity? nomenclature;
+  final List<StopListEntity>? stopList;
+  final AccessTokenEntity? accessToken;
+  final UserEntity? user;
 
-  const PreloadSuccessState(this.nomenclatureEntity, this.accessTokenEntity);
+  const PreloadSuccessState(this.nomenclature, this.stopList, this.accessToken, this.user);
 
   @override
-  List<Object?> get props => [nomenclatureEntity, accessTokenEntity];
+  List<Object?> get props => [nomenclature, stopList, accessToken, user];
 }
 
 final class PreloadOldVersionState extends PreloadState {

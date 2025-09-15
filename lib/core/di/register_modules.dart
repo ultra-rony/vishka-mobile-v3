@@ -35,7 +35,8 @@ abstract class RegisterModule {
     onCreate: (db, version) async {
       await db.execute('''
         CREATE TABLE guests (
-            id TEXT PRIMARY KEY,
+            primaryId int PRIMARY KEY,
+            id TEXT,
             referrerId TEXT,
             name TEXT,
             surname TEXT,
@@ -67,34 +68,34 @@ abstract class RegisterModule {
       await db.execute('''
         CREATE TABLE categories (
             id TEXT PRIMARY KEY,
-            guestId TEXT,
+            guestId int,
             name TEXT,
             isActive INTEGER,
             isDefaultForNewGuests INTEGER,
-            FOREIGN KEY (guestId) REFERENCES guests(id)
+            FOREIGN KEY (guestId) REFERENCES guests(primaryId)
         );
       ''');
       await db.execute('''
         CREATE TABLE walletBalances (
             id TEXT PRIMARY KEY,
-            guestId TEXT,
+            guestId int,
             name TEXT,
             type INTEGER,
             balance REAL,
-            FOREIGN KEY (guestId) REFERENCES guests(id)
+            FOREIGN KEY (guestId) REFERENCES guests(primaryId)
         );
       ''');
       await db.execute('''
         CREATE TABLE cards (
             id TEXT PRIMARY KEY,
-            guestId TEXT NOT NULL,
+            guestId int,
             track TEXT,
             number TEXT,
             validToDate TEXT,
-            FOREIGN KEY (guestId) REFERENCES guests(id)
+            FOREIGN KEY (guestId) REFERENCES guests(_id)
         );
       ''');
     },
-    version: 2,
+    version: 4,
   );
 }

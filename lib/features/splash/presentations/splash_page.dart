@@ -35,7 +35,6 @@ class _SplashPageState extends State<SplashPage> {
               case PreloadInitState():
                 break;
               case PreloadSuccessState():
-                debugPrint("dsadsa ${state.accessTokenEntity?.token}");
                 startWebViewRedirect();
                 break;
               case PreloadOldVersionState():

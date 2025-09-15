@@ -15,7 +15,7 @@ Future<void> main() async {
       providers: [
         BlocProvider<PreloadCubit>(
           create: (_) =>
-              PreloadCubit(getIt(), getIt(), getIt(), getIt(), getIt(), getIt())
+              PreloadCubit(getIt(), getIt(), getIt(), getIt(), getIt(), getIt(), getIt())
                 ..loadData(),
         ),
       ],

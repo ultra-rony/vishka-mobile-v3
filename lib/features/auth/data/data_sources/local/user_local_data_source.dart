@@ -1,49 +1,36 @@
 import 'package:injectable/injectable.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class UserLocalDataSource {
-  Future<Map<String, dynamic>?> fetchUser();
+  /// Получить сохранённый номер телефона (или null, если не задан)
+  Future<String?> getPhoneNumber();
 
-  Future<Map<String, dynamic>?> updateUser();
+  /// Сохранить или изменить номер телефона
+  Future<void> savePhoneNumber(String phoneNumber);
 
-  Future<void> truncate();
-
-  Future<int?> addGuest(Map<String, dynamic> user);
+  /// Удалить сохранённый номер телефона
+  Future<void> deletePhoneNumber();
 }
 
 @LazySingleton(as: UserLocalDataSource)
 class UserLocalDataSourceImpl implements UserLocalDataSource {
-  final Database db;
+  static const _phoneKey = 'user_phone_number';
+  final SharedPreferences prefs;
 
-  UserLocalDataSourceImpl(this.db);
+  UserLocalDataSourceImpl(this.prefs);
 
   @override
-  Future<Map<String, dynamic>?> fetchUser() async {
-    final List<Map<String, dynamic>> maps = await db.query('guests');
-    if (maps.isNotEmpty) {
-      return maps[0];
-    }
-    return null;
+  Future<String?> getPhoneNumber() async {
+    return prefs.getString(_phoneKey);
   }
 
   @override
-  Future<void> truncate() async {
-    await db.delete('guests');
-    await db.execute("DELETE FROM sqlite_sequence WHERE name = 'guests'");
+  Future<void> savePhoneNumber(String phoneNumber) async {
+    await prefs.setString(_phoneKey, phoneNumber);
   }
 
   @override
-  Future<int?> addGuest(Map<String, dynamic> user) async {
-    return await db.insert(
-      'guests',
-      user,
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  @override
-  Future<Map<String, dynamic>?> updateUser() {
-    // TODO: implement updateUser
-    throw UnimplementedError();
+  Future<void> deletePhoneNumber() async {
+    await prefs.remove(_phoneKey);
   }
 }
