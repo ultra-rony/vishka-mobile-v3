@@ -14,7 +14,7 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._remoteDataSource);
 
   @override
-  Future<NetworkDataState<UserEntity?>> getUser(String token, phone) async {
+  Future<NetworkDataState<UserEntity?>> getRemoteIikoUser(String token, phone) async {
     try {
       final httpResponse = await _remoteDataSource.fetchIikoUser(token, phone);
       if (httpResponse.statusCode == 200) {

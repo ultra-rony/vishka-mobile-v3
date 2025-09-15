@@ -17,7 +17,7 @@ class GetRemoteIikoUserUseCase
     Map<String, dynamic>? params,
   }) async {
     final data = params ?? {};
-    return await _userRepository.getUser(
+    return await _userRepository.getRemoteIikoUser(
       data['token'] ?? "",
       data['phone'] ?? "",
     );
