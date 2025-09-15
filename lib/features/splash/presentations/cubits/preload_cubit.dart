@@ -59,13 +59,22 @@ class PreloadCubit extends Cubit<PreloadState> {
       UserEntity? user;
       String? phoneNumber = await _getLocalPhoneNumberUseCase();
       if (phoneNumber != null) {
-        await _getRemoteIikoUserUseCase.call(
-          params: {'token': accessToken.data?.token, 'phone': phoneNumber},
-        ).then((value) {
-          user = value.data;
-        });
+        await _getRemoteIikoUserUseCase
+            .call(
+              params: {'token': accessToken.data?.token, 'phone': phoneNumber},
+            )
+            .then((value) {
+              user = value.data;
+            });
       }
-      emit(PreloadSuccessState(nomenclature.data, stopList.data, accessToken.data, user));
+      emit(
+        PreloadSuccessState(
+          nomenclature.data,
+          stopList.data,
+          accessToken.data,
+          user,
+        ),
+      );
     } catch (e) {
       emit(const PreloadErrorState());
     }
