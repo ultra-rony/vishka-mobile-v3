@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BasketProductEntity {
 
- String? get productId; double? get price; String? get type; String? get name; String? get description; String? get image; double? get weight; int? get amount;
+ int? get id; String? get productId; double? get price; String? get type; String? get name; String? get description; String? get image; double? get weight; int? get amount;
 /// Create a copy of BasketProductEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $BasketProductEntityCopyWith<BasketProductEntity> get copyWith => _$BasketProduc
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BasketProductEntity&&(identical(other.productId, productId) || other.productId == productId)&&(identical(other.price, price) || other.price == price)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.image, image) || other.image == image)&&(identical(other.weight, weight) || other.weight == weight)&&(identical(other.amount, amount) || other.amount == amount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BasketProductEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.productId, productId) || other.productId == productId)&&(identical(other.price, price) || other.price == price)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.image, image) || other.image == image)&&(identical(other.weight, weight) || other.weight == weight)&&(identical(other.amount, amount) || other.amount == amount));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,productId,price,type,name,description,image,weight,amount);
+int get hashCode => Object.hash(runtimeType,id,productId,price,type,name,description,image,weight,amount);
 
 @override
 String toString() {
-  return 'BasketProductEntity(productId: $productId, price: $price, type: $type, name: $name, description: $description, image: $image, weight: $weight, amount: $amount)';
+  return 'BasketProductEntity(id: $id, productId: $productId, price: $price, type: $type, name: $name, description: $description, image: $image, weight: $weight, amount: $amount)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $BasketProductEntityCopyWith<$Res>  {
   factory $BasketProductEntityCopyWith(BasketProductEntity value, $Res Function(BasketProductEntity) _then) = _$BasketProductEntityCopyWithImpl;
 @useResult
 $Res call({
- String? productId, double? price, String? type, String? name, String? description, String? image, double? weight, int? amount
+ int? id, String? productId, double? price, String? type, String? name, String? description, String? image, double? weight, int? amount
 });
 
 
@@ -62,9 +62,10 @@ class _$BasketProductEntityCopyWithImpl<$Res>
 
 /// Create a copy of BasketProductEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? productId = freezed,Object? price = freezed,Object? type = freezed,Object? name = freezed,Object? description = freezed,Object? image = freezed,Object? weight = freezed,Object? amount = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? productId = freezed,Object? price = freezed,Object? type = freezed,Object? name = freezed,Object? description = freezed,Object? image = freezed,Object? weight = freezed,Object? amount = freezed,}) {
   return _then(_self.copyWith(
-productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
 as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? productId,  double? price,  String? type,  String? name,  String? description,  String? image,  double? weight,  int? amount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? productId,  double? price,  String? type,  String? name,  String? description,  String? image,  double? weight,  int? amount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BasketProductEntity() when $default != null:
-return $default(_that.productId,_that.price,_that.type,_that.name,_that.description,_that.image,_that.weight,_that.amount);case _:
+return $default(_that.id,_that.productId,_that.price,_that.type,_that.name,_that.description,_that.image,_that.weight,_that.amount);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.productId,_that.price,_that.type,_that.name,_that.descript
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? productId,  double? price,  String? type,  String? name,  String? description,  String? image,  double? weight,  int? amount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? productId,  double? price,  String? type,  String? name,  String? description,  String? image,  double? weight,  int? amount)  $default,) {final _that = this;
 switch (_that) {
 case _BasketProductEntity():
-return $default(_that.productId,_that.price,_that.type,_that.name,_that.description,_that.image,_that.weight,_that.amount);case _:
+return $default(_that.id,_that.productId,_that.price,_that.type,_that.name,_that.description,_that.image,_that.weight,_that.amount);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return $default(_that.productId,_that.price,_that.type,_that.name,_that.descript
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? productId,  double? price,  String? type,  String? name,  String? description,  String? image,  double? weight,  int? amount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? productId,  double? price,  String? type,  String? name,  String? description,  String? image,  double? weight,  int? amount)?  $default,) {final _that = this;
 switch (_that) {
 case _BasketProductEntity() when $default != null:
-return $default(_that.productId,_that.price,_that.type,_that.name,_that.description,_that.image,_that.weight,_that.amount);case _:
+return $default(_that.id,_that.productId,_that.price,_that.type,_that.name,_that.description,_that.image,_that.weight,_that.amount);case _:
   return null;
 
 }
@@ -213,9 +214,10 @@ return $default(_that.productId,_that.price,_that.type,_that.name,_that.descript
 
 
 class _BasketProductEntity implements BasketProductEntity {
-  const _BasketProductEntity({this.productId, this.price, this.type, this.name, this.description, this.image, this.weight, this.amount = 0});
+  const _BasketProductEntity({this.id, this.productId, this.price, this.type, this.name, this.description, this.image, this.weight, this.amount = 0});
   
 
+@override final  int? id;
 @override final  String? productId;
 @override final  double? price;
 @override final  String? type;
@@ -235,16 +237,16 @@ _$BasketProductEntityCopyWith<_BasketProductEntity> get copyWith => __$BasketPro
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BasketProductEntity&&(identical(other.productId, productId) || other.productId == productId)&&(identical(other.price, price) || other.price == price)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.image, image) || other.image == image)&&(identical(other.weight, weight) || other.weight == weight)&&(identical(other.amount, amount) || other.amount == amount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BasketProductEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.productId, productId) || other.productId == productId)&&(identical(other.price, price) || other.price == price)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.description, description) || other.description == description)&&(identical(other.image, image) || other.image == image)&&(identical(other.weight, weight) || other.weight == weight)&&(identical(other.amount, amount) || other.amount == amount));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,productId,price,type,name,description,image,weight,amount);
+int get hashCode => Object.hash(runtimeType,id,productId,price,type,name,description,image,weight,amount);
 
 @override
 String toString() {
-  return 'BasketProductEntity(productId: $productId, price: $price, type: $type, name: $name, description: $description, image: $image, weight: $weight, amount: $amount)';
+  return 'BasketProductEntity(id: $id, productId: $productId, price: $price, type: $type, name: $name, description: $description, image: $image, weight: $weight, amount: $amount)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$BasketProductEntityCopyWith<$Res> implements $BasketProdu
   factory _$BasketProductEntityCopyWith(_BasketProductEntity value, $Res Function(_BasketProductEntity) _then) = __$BasketProductEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String? productId, double? price, String? type, String? name, String? description, String? image, double? weight, int? amount
+ int? id, String? productId, double? price, String? type, String? name, String? description, String? image, double? weight, int? amount
 });
 
 
@@ -272,9 +274,10 @@ class __$BasketProductEntityCopyWithImpl<$Res>
 
 /// Create a copy of BasketProductEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? productId = freezed,Object? price = freezed,Object? type = freezed,Object? name = freezed,Object? description = freezed,Object? image = freezed,Object? weight = freezed,Object? amount = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? productId = freezed,Object? price = freezed,Object? type = freezed,Object? name = freezed,Object? description = freezed,Object? image = freezed,Object? weight = freezed,Object? amount = freezed,}) {
   return _then(_BasketProductEntity(
-productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,productId: freezed == productId ? _self.productId : productId // ignore: cast_nullable_to_non_nullable
 as String?,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable

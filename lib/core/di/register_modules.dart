@@ -31,71 +31,22 @@ abstract class RegisterModule {
 
   @preResolve
   Future<Database> get database async => openDatabase(
-    join(await getDatabasesPath(), 'iiko.db'),
+    join(await getDatabasesPath(), 'vishka.db'),
     onCreate: (db, version) async {
       await db.execute('''
-        CREATE TABLE guests (
-            primaryId int PRIMARY KEY,
-            id TEXT,
-            referrerId TEXT,
-            name TEXT,
-            surname TEXT,
-            middleName TEXT,
-            comment TEXT,
-            phone TEXT,
-            cultureName TEXT,
-            birthday TEXT,
-            email TEXT,
-            sex INTEGER,
-            consentStatus INTEGER,
-            anonymized INTEGER,
-            userData TEXT,
-            shouldReceivePromoActionsInfo INTEGER,
-            shouldReceiveLoyaltyInfo INTEGER,
-            shouldReceiveOrderStatusInfo INTEGER,
-            personalDataConsentFrom TEXT,
-            personalDataConsentTo TEXT,
-            personalDataProcessingFrom TEXT,
-            personalDataProcessingTo TEXT,
-            isDeleted INTEGER,
-            whenRegistered TEXT,
-            lastProcessedOrderDate TEXT,
-            firstOrderDate TEXT,
-            lastVisitedOrganizationId TEXT,
-            registrationOrganizationId TEXT
-        );
-      ''');
-      await db.execute('''
-        CREATE TABLE categories (
-            id TEXT PRIMARY KEY,
-            guestId int,
-            name TEXT,
-            isActive INTEGER,
-            isDefaultForNewGuests INTEGER,
-            FOREIGN KEY (guestId) REFERENCES guests(primaryId)
-        );
-      ''');
-      await db.execute('''
-        CREATE TABLE walletBalances (
-            id TEXT PRIMARY KEY,
-            guestId int,
-            name TEXT,
-            type INTEGER,
-            balance REAL,
-            FOREIGN KEY (guestId) REFERENCES guests(primaryId)
-        );
-      ''');
-      await db.execute('''
-        CREATE TABLE cards (
-            id TEXT PRIMARY KEY,
-            guestId int,
-            track TEXT,
-            number TEXT,
-            validToDate TEXT,
-            FOREIGN KEY (guestId) REFERENCES guests(_id)
+        CREATE TABLE basketProducts (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          productId TEXT,
+          price REAL,
+          type TEXT,
+          name TEXT,
+          description TEXT,
+          image TEXT,
+          weight REAL,
+          amount INTEGER DEFAULT 0
         );
       ''');
     },
-    version: 4,
+    version: 2,
   );
 }

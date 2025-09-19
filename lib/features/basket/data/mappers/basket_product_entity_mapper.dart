@@ -4,6 +4,7 @@ import 'package:vishka_front_v3/shared/entities/basket/basket_product_entity.dar
 extension BasketProductEntityMapper on BasketProductEntity {
   BasketProductModel toModel() {
     return BasketProductModel(
+      id: id,
       productId: productId,
       price: price,
       type: type,

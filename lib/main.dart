@@ -14,15 +14,7 @@ Future<void> main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<PreloadCubit>(
-          create: (_) => PreloadCubit(
-            getIt(),
-            getIt(),
-            getIt(),
-            getIt(),
-            getIt(),
-            getIt(),
-            getIt(),
-          )..loadData(),
+          create: (_) => getIt<PreloadCubit>()..loadData(),
         ),
       ],
       child: const App(),

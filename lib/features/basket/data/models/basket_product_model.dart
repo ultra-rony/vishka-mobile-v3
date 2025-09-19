@@ -7,6 +7,7 @@ part 'basket_product_model.g.dart';
 @freezed
 abstract class BasketProductModel with _$BasketProductModel {
   const factory BasketProductModel({
+    int? id,
     String? productId,
     double? price,
     String? type,

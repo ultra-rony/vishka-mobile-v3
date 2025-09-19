@@ -5,6 +5,7 @@ part 'basket_product_entity.freezed.dart';
 @freezed
 abstract class BasketProductEntity with _$BasketProductEntity {
   const factory BasketProductEntity({
+    int? id,
     String? productId,
     double? price,
     String? type,
