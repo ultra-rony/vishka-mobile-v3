@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:vishka_front_v3/features/auth/presentation/modals/phone_number_modal.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -7,6 +9,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text("data")));
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: SafeArea(child: Column(
+        children: [
+          SizedBox(height: 100),
+          Center(child: TextButton(onPressed: () {
+            PhoneNumberModal().modal(context);
+          }, child: const Text("Profile"))),
+        ],
+      )),
+    );
   }
 }

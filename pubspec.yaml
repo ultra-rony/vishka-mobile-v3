@@ -35,6 +35,9 @@ dependencies:
   auto_route: ^10.1.2
   connectivity_plus: ^6.1.5
   path: ^1.9.1
+  modal_bottom_sheet: ^3.0.0
+  google_fonts: ^6.3.1
+  zoom_tap_animation: ^1.1.0
 
 dev_dependencies:
   flutter_test:

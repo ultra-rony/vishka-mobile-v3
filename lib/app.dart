@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vishka_front_v3/core/routes/app_router.dart';
+import 'package:vishka_front_v3/core/themes/dark_theme.dart';
 
 import 'package:vishka_front_v3/generated/l10n.dart';
 
@@ -19,6 +20,8 @@ class App extends StatelessWidget {
       ],
       supportedLocales: const <Locale>[Locale.fromSubtags(languageCode: 'en')],
       themeMode: ThemeMode.system,
+      darkTheme: darkTheme,
+      theme: darkTheme,
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter.config(),
     );

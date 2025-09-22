@@ -6,7 +6,9 @@ import 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: SplashRoute.page, initial: true),
-    AutoRoute(page: HomeRoute.page),
+    AutoRoute(page: SplashRoute.page),
+    AutoRoute(page: HomeRoute.page, initial: true),
+    AutoRoute(page: PhoneNumberRoute.page),
+    AutoRoute(page: SmsVerificationRoute.page),
   ];
 }
