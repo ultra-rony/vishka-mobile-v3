@@ -53,6 +53,81 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Укажите номер телефона для входа в профиль`
+  String get enter_your_phone_number_description {
+    return Intl.message(
+      'Укажите номер телефона для входа в профиль',
+      name: 'enter_your_phone_number_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Поддержка`
+  String get support_text {
+    return Intl.message('Поддержка', name: 'support_text', desc: '', args: []);
+  }
+
+  /// `Войдите в профиль`
+  String get log_in_to_your_profile_text {
+    return Intl.message(
+      'Войдите в профиль',
+      name: 'log_in_to_your_profile_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Чтобы копить бонусы и получать персональные скидки`
+  String get accumulate_bonuses_discounts {
+    return Intl.message(
+      'Чтобы копить бонусы и получать персональные скидки',
+      name: 'accumulate_bonuses_discounts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Указать телефон`
+  String get enter_your_phone_number {
+    return Intl.message(
+      'Указать телефон',
+      name: 'enter_your_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Правовые документы`
+  String get legal_documents_text {
+    return Intl.message(
+      'Правовые документы',
+      name: 'legal_documents_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Версия`
+  String get app_version {
+    return Intl.message('Версия', name: 'app_version', desc: '', args: []);
+  }
+
+  /// `Назад`
+  String get back_text {
+    return Intl.message('Назад', name: 'back_text', desc: '', args: []);
+  }
+
+  /// `Политика конфиденциальности`
+  String get politics_text {
+    return Intl.message(
+      'Политика конфиденциальности',
+      name: 'politics_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

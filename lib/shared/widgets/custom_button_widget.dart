@@ -14,31 +14,33 @@ class CustomButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return SizedBox(
-      width: size.width * 0.8359,
-      height: size.height * 0.06161,
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: ElevatedButton(
-              onPressed: () {
-                HapticFeedback.heavyImpact();
-                onTap?.call();
-              },
-              child: child,
-            ),
-          ),
-          if (onTap == null)
-            Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xA31F150B),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+    return Row(
+      children: [
+        const Spacer(),
+        SizedBox(
+          width: size.width * 0.8359,
+          height: size.height * 0.06161,
+          child: Stack(
+            children: [
+              SizedBox.expand(
+                child: ElevatedButton(
+                  onPressed: () {
+                    HapticFeedback.heavyImpact();
+                    onTap?.call();
+                  },
+                  child: child,
                 ),
               ),
-        ],
-      ),
+              if (onTap == null)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(color: const Color(0xA31F150B)),
+                ),
+            ],
+          ),
+        ),
+        const Spacer(),
+      ],
     );
   }
 }

@@ -8,7 +8,5 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(page: SplashRoute.page),
     AutoRoute(page: HomeRoute.page, initial: true),
-    AutoRoute(page: PhoneNumberRoute.page),
-    AutoRoute(page: SmsVerificationRoute.page),
   ];
 }

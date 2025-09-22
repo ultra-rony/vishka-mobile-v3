@@ -1,1 +1,11 @@
-{}
+{
+  "enter_your_phone_number_description": "Укажите номер телефона для входа в профиль",
+  "support_text": "Поддержка",
+  "log_in_to_your_profile_text": "Войдите в профиль",
+  "accumulate_bonuses_discounts": "Чтобы копить бонусы и получать персональные скидки",
+  "enter_your_phone_number": "Указать телефон",
+  "legal_documents_text": "Правовые документы",
+  "app_version": "Версия",
+  "back_text": "Назад",
+  "politics_text": "Политика конфиденциальности"
+}

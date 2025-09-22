@@ -120,17 +120,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i182.AuthRepository>(
       () => _i881.AuthRepositoryImpl(gh<_i773.AuthRemoteDataSource>()),
     );
-    gh.factory<_i799.GetRemoteIikoUserUseCase>(
-      () => _i799.GetRemoteIikoUserUseCase(gh<_i903.UserRepository>()),
+    gh.factory<_i455.DeleteLocalPhoneNumberUseCase>(
+      () => _i455.DeleteLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
     );
     gh.factory<_i301.GetLocalPhoneNumberUseCase>(
       () => _i301.GetLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
     );
+    gh.factory<_i799.GetRemoteIikoUserUseCase>(
+      () => _i799.GetRemoteIikoUserUseCase(gh<_i903.UserRepository>()),
+    );
     gh.factory<_i614.PutLocalPhoneNumberUseCase>(
       () => _i614.PutLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
-    );
-    gh.factory<_i455.DeleteLocalPhoneNumberUseCase>(
-      () => _i455.DeleteLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
     );
     gh.lazySingleton<_i547.BasketRepository>(
       () => _i391.BasketRepositoryImpl(gh<_i503.BasketLocalDataSource>()),
@@ -170,14 +170,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i974.Logger>(),
       ),
     );
+    gh.factory<_i74.GetRemoteStopListUseCase>(
+      () => _i74.GetRemoteStopListUseCase(gh<_i290.PreloadRepository>()),
+    );
     gh.factory<_i446.CheckRemoteAppVersionUseCase>(
       () => _i446.CheckRemoteAppVersionUseCase(gh<_i290.PreloadRepository>()),
     );
     gh.factory<_i191.GetRemoteNomenclatureUseCase>(
       () => _i191.GetRemoteNomenclatureUseCase(gh<_i290.PreloadRepository>()),
-    );
-    gh.factory<_i74.GetRemoteStopListUseCase>(
-      () => _i74.GetRemoteStopListUseCase(gh<_i290.PreloadRepository>()),
     );
     gh.factory<_i1044.PreloadCubit>(
       () => _i1044.PreloadCubit(
