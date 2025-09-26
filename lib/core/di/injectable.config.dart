@@ -133,9 +133,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i799.GetRemoteIikoUserUseCase>(
       () => _i799.GetRemoteIikoUserUseCase(gh<_i903.UserRepository>()),
     );
-    gh.factory<_i409.HomeCubit>(
-      () => _i409.HomeCubit(gh<_i301.GetLocalPhoneNumberUseCase>()),
-    );
     gh.lazySingleton<_i547.BasketRepository>(
       () => _i391.BasketRepositoryImpl(gh<_i503.BasketLocalDataSource>()),
     );
@@ -160,10 +157,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i634.AuthCubit>(
       () => _i634.AuthCubit(
+        gh<_i974.Logger>(),
         gh<_i926.SendRemotePhoneNumberUseCase>(),
         gh<_i584.CheckRemoteSmsUseCase>(),
         gh<_i1008.PutLocalPhoneNumberUseCase>(),
-        gh<_i974.Logger>(),
+        gh<_i799.GetRemoteIikoUserUseCase>(),
+        gh<_i28.GetRemoteAccessTokenUseCase>(),
       ),
     );
     gh.factory<_i684.DeleteLocalBasketProductUseCase>(
@@ -186,6 +185,17 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1044.PreloadCubit>(
       () => _i1044.PreloadCubit(
+        gh<_i974.Logger>(),
+        gh<_i446.CheckRemoteAppVersionUseCase>(),
+        gh<_i191.GetRemoteNomenclatureUseCase>(),
+        gh<_i28.GetRemoteAccessTokenUseCase>(),
+        gh<_i74.GetRemoteStopListUseCase>(),
+        gh<_i799.GetRemoteIikoUserUseCase>(),
+        gh<_i301.GetLocalPhoneNumberUseCase>(),
+      ),
+    );
+    gh.factory<_i409.HomeCubit>(
+      () => _i409.HomeCubit(
         gh<_i974.Logger>(),
         gh<_i446.CheckRemoteAppVersionUseCase>(),
         gh<_i191.GetRemoteNomenclatureUseCase>(),

@@ -15,14 +15,14 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<PreloadCubit>(
-          create: (_) => getIt<PreloadCubit>()..loadData(),
-        ),
+        // BlocProvider<PreloadCubit>(
+        //   create: (_) => getIt<PreloadCubit>()..loadData(),
+        // ),
         BlocProvider<AuthCubit>(
           create: (_) => getIt<AuthCubit>(),
         ),
         BlocProvider<HomeCubit>(
-          create: (_) => getIt<HomeCubit>(),
+          create: (_) => getIt<HomeCubit>()..loadData(),
         ),
       ],
       child: const App(),

@@ -32,14 +32,25 @@ class PhoneNumberModal {
         return BlocListener<AuthCubit, AuthState>(
           bloc: context.read<AuthCubit>(),
           listener: (context, state) {
-            if (state is AuthLoadingState) {}
+            if (state is AuthLoadingState) {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
             if (state is AuthPhoneSuccessState) {
+              Navigator.of(context, rootNavigator: true).pop();
               if (phoneNumber != null) {
                 Navigator.of(context).pop();
                 SmsModal().modal(context, phoneNumber!);
               }
             }
-            if (state is AuthErrorState) {}
+            if (state is AuthErrorState) {
+              Navigator.of(context, rootNavigator: true).pop();
+            }
           },
           child: StatefulBuilder(
             builder: (context, setState) {

@@ -26,10 +26,11 @@ final class AuthPhoneSuccessState extends AuthState {
 }
 
 final class AuthSmsSuccessState extends AuthState {
-  const AuthSmsSuccessState();
+  final UserEntity? userEntity;
+  const AuthSmsSuccessState(this.userEntity);
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [userEntity];
 }
 
 final class AuthErrorState extends AuthState {

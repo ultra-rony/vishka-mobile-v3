@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:vishka_front_v3/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:vishka_front_v3/features/auth/presentation/modals/intro_modal.dart';
+import 'package:vishka_front_v3/features/home/cubit/home_cubit.dart';
 import 'package:vishka_front_v3/generated/l10n.dart';
 import 'package:vishka_front_v3/shared/widgets/custom_button_widget.dart';
 
@@ -59,12 +60,24 @@ class _SmsWidgetState extends State<SmsWidget> {
       listener: (context, state) {
         if (state is AuthSmsSuccessState) {
           context.read<AuthCubit>().onSavePhoneNumber(widget.phoneNumber);
+          context.read<HomeCubit>().reloadUser(state.userEntity);
+          Navigator.of(context, rootNavigator: true).pop();
           Navigator.of(context).pop();
         }
         if (state is AuthErrorState) {
+          Navigator.of(context, rootNavigator: true).pop();
           setState(() {
             hasError = true;
           });
+        }
+        if (state is AuthLoadingState) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
       },
       child: SizedBox(

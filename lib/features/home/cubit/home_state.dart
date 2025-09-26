@@ -12,10 +12,45 @@ final class HomeInitialState extends HomeState {
 }
 
 final class HomeDataState extends HomeState {
-  final String? phoneNumber;
+  final NomenclatureEntity? nomenclature;
+  final List<StopListEntity>? stopList;
+  final UserEntity? user;
 
-  const HomeDataState(this.phoneNumber);
+  const HomeDataState(
+    this.nomenclature,
+    this.stopList,
+    this.user,
+  );
 
   @override
-  List<Object?> get props => [phoneNumber];
+  List<Object?> get props => [nomenclature, stopList, user];
+
+  HomeDataState copyWith({
+    NomenclatureEntity? nomenclature,
+    List<StopListEntity>? stopList,
+    AccessTokenEntity? accessToken,
+    UserEntity? user,
+  }) {
+    return HomeDataState(
+      nomenclature ?? this.nomenclature,
+      stopList ?? this.stopList,
+      user ?? this.user,
+    );
+  }
+}
+
+final class HomeLegacyState extends HomeState {
+  const HomeLegacyState();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class HomeErrorState extends HomeState {
+  final String? message;
+
+  const HomeErrorState(this.message);
+
+  @override
+  List<Object?> get props => [message];
 }

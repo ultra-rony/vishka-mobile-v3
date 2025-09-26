@@ -10,39 +10,44 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 100),
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  IntroModal.modal(context);
-                },
-                child: const Text("Profile"),
-              ),
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (state is HomeLegacyState) {
+          return const Scaffold(body: Center(child: Text("HomeLegacyState")));
+        }
+        if (state is HomeErrorState) {
+          return const Scaffold(body: Center(child: Text("HomeErrorState")));
+        }
+        if (state is HomeInitialState) {
+          return const Scaffold(body: Center(child: Text("HomeInitialState")));
+        }
+        return Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+                const SizedBox(height: 100),
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      IntroModal.modal(context);
+                    },
+                    child: const Text("Map"),
+                  ),
+                ),
+                const SizedBox(height: 100),
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      IntroModal.modal(context);
+                    },
+                    child: const Text("Profile"),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 100),
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  context.read<HomeCubit>().authenticated();
-                },
-                child: const Text("check"),
-              ),
-            ),
-            BlocBuilder<HomeCubit, HomeState>(
-              builder: (context, state) {
-                if (state is HomeDataState) {
-                  return Text("Phone: ${state.phoneNumber}");
-                }
-                return const SizedBox.shrink();
-              },
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
