@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'package:vishka_front_v3/core/states/network_data_state.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/check_remote_sms_use_case.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/put_local_phone_number_use_case.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/send_remote_phone_number_use_case.dart';
