@@ -6,10 +6,10 @@ final _primaryColor = const Color(0xFFE08B1B);
 final ThemeData darkTheme = ThemeData(
   textTheme: GoogleFonts.jostTextTheme(
     const TextTheme(
-      bodySmall: TextStyle(color: Color(0XFF8F877E), fontSize: 12),
-      headlineSmall: TextStyle(color: Color(0XFF8F877E), fontSize: 12),
-      bodyMedium: TextStyle(color: Colors.white, fontSize: 16),
-      headlineMedium: TextStyle(color: Colors.white, fontSize: 16),
+      bodySmall: TextStyle(color: Color(0XFF8F877E), fontSize: 14),
+      headlineSmall: TextStyle(color: Color(0XFF8F877E), fontSize: 14),
+      bodyMedium: TextStyle(color: Colors.white, fontSize: 17),
+      headlineMedium: TextStyle(color: Colors.white, fontSize: 17),
       bodyLarge: TextStyle(color: Colors.white, fontSize: 22),
       headlineLarge: TextStyle(color: Colors.white, fontSize: 22),
     ),
@@ -56,7 +56,7 @@ final ThemeData darkTheme = ThemeData(
   ),
   iconTheme: const IconThemeData(
     color: Color(0XFF8F877E),
-    size: 30,
+    size: 25,
   ),
   dividerTheme: const DividerThemeData(
     color: Color(0XFF8F877E),

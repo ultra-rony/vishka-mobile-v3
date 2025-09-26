@@ -5,7 +5,6 @@ import 'package:vishka_front_v3/core/utils/constants.dart';
 import 'package:vishka_front_v3/generated/l10n.dart';
 
 class LegalDocumentsModal {
-
   static Future<void> _launchUrl(Uri uri) async {
     if (!await launchUrl(uri)) {
       throw Exception('Could not launch $uri');
@@ -55,7 +54,12 @@ class LegalDocumentsModal {
                       ),
                     ),
                   ),
-                  Text(S.of(context).legal_documents_text),
+                  Text(
+                    S.of(context).legal_documents_text,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   const Spacer(),
                 ],
               ),
@@ -69,7 +73,7 @@ class LegalDocumentsModal {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
                       _launchUrl(Uri.parse(Constants.getPrivacyPolicyUrl));
                     },
@@ -81,6 +85,7 @@ class LegalDocumentsModal {
                       ],
                     ),
                   ),
+                  SizedBox(height: size.height * 0.012),
                   const Divider(),
                 ],
               ),

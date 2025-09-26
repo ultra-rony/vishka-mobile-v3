@@ -53,6 +53,7 @@ class IntroModal {
                     child: Text(
                       S.of(context).support_text,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
                         color: Theme.of(context).primaryColor,
                       ),
                     ),
@@ -71,7 +72,9 @@ class IntroModal {
                   const Spacer(),
                   Text(
                     S.of(context).log_in_to_your_profile_text,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
                   const Spacer(),
                   Padding(
@@ -93,8 +96,8 @@ class IntroModal {
                     },
                   ),
                   const Spacer(),
-                  TextButton(
-                    onPressed: () {
+                  InkWell(
+                    onTap: () {
                       LegalDocumentsModal.modal(context);
                     },
                     child: Text(
