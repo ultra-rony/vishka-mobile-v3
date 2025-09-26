@@ -7,5 +7,10 @@
   "legal_documents_text": "Правовые документы",
   "app_version": "Версия",
   "back_text": "Назад",
-  "politics_text": "Политика конфиденциальности"
+  "politics_text": "Политика конфиденциальности",
+  "phone_number_text": "Номер телефона",
+  "continue_text": "Продолжить",
+  "enter_code_text": "Введите код из смс",
+  "to_the_number_text": "на номер",
+  "resend_sms_code": "Получить новый код"
 }

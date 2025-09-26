@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/check_remote_sms_use_case.dart';
+import 'package:vishka_front_v3/features/auth/domain/user_cases/put_local_phone_number_use_case.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/send_remote_phone_number_use_case.dart';
 
 part 'auth_state.dart';
@@ -11,13 +12,15 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final SendRemotePhoneNumberUseCase _sendRemotePhoneNumberUseCase;
   final CheckRemoteSmsUseCase _checkRemoteSmsUseCase;
+  final PutLocalPhoneNumberUseCase _putLocalPhoneNumberUseCase;
   final Logger _logger;
 
   AuthCubit(
     this._sendRemotePhoneNumberUseCase,
     this._checkRemoteSmsUseCase,
+    this._putLocalPhoneNumberUseCase,
     this._logger,
-  ) : super(AuthInitialState());
+  ) : super(const AuthInitialState());
 
   @override
   void onChange(Change<AuthState> change) {
@@ -27,26 +30,28 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  Future<void> onSendPhoneNumber(String phone) async {
-    print("dsadsasd $state");
-    // _emitted
-    if (state is AuthLoadingState) {
+  Future<void> onSavePhoneNumber(String phoneNumber) async {
+    await _putLocalPhoneNumberUseCase(params: phoneNumber);
+  }
 
+  Future<void> onSendPhoneNumber(String phone) async {
+    if (state is AuthLoadingState) {
+      return;
     }
-    // emit(AuthLoadingState());
-    // try {
-    //   await _sendRemotePhoneNumberUseCase(params: phone);
-    //   emit(AuthPhoneSuccessState());
-    // } catch (_) {
-    //   emit(const AuthErrorState('Unexpected error occurred'));
-    // }
+    emit(const AuthLoadingState());
+    try {
+      await _sendRemotePhoneNumberUseCase(params: phone);
+      emit(const AuthPhoneSuccessState());
+    } catch (_) {
+      emit(const AuthErrorState('Unexpected error occurred'));
+    }
   }
 
   Future<void> onCheckSms(String phone, sms) async {
-    emit(AuthLoadingState());
+    emit(const AuthLoadingState());
     try {
       await _checkRemoteSmsUseCase(params: {'phone': phone, 'sms': sms});
-      emit(AuthSmsSuccessState());
+      emit(const AuthSmsSuccessState());
     } catch (_) {
       emit(const AuthErrorState('Unexpected error occurred'));
     }

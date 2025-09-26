@@ -27,6 +27,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "app_version": MessageLookupByLibrary.simpleMessage("Версия"),
     "back_text": MessageLookupByLibrary.simpleMessage("Назад"),
+    "continue_text": MessageLookupByLibrary.simpleMessage("Продолжить"),
+    "enter_code_text": MessageLookupByLibrary.simpleMessage(
+      "Введите код из смс",
+    ),
     "enter_your_phone_number": MessageLookupByLibrary.simpleMessage(
       "Указать телефон",
     ),
@@ -39,9 +43,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "log_in_to_your_profile_text": MessageLookupByLibrary.simpleMessage(
       "Войдите в профиль",
     ),
+    "phone_number_text": MessageLookupByLibrary.simpleMessage("Номер телефона"),
     "politics_text": MessageLookupByLibrary.simpleMessage(
       "Политика конфиденциальности",
     ),
+    "resend_sms_code": MessageLookupByLibrary.simpleMessage(
+      "Получить новый код",
+    ),
     "support_text": MessageLookupByLibrary.simpleMessage("Поддержка"),
+    "to_the_number_text": MessageLookupByLibrary.simpleMessage("на номер"),
   };
 }

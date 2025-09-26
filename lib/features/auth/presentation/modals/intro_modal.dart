@@ -9,7 +9,6 @@ import 'package:vishka_front_v3/shared/widgets/custom_button_widget.dart';
 import 'legal_documents_modal.dart';
 
 class IntroModal {
-
   static Future<void> _launchUrl(Uri uri) async {
     if (!await launchUrl(uri)) {
       throw Exception('Could not launch $uri');
@@ -41,13 +40,15 @@ class IntroModal {
                     onTap: () {
                       Navigator.of(context).pop();
                     },
-                    child: Icon(Icons.close, color: Theme.of(context).primaryColor),
+                    child: Icon(
+                      Icons.close,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                   const Spacer(),
                   InkWell(
                     onTap: () {
-                      _launchUrl(
-                          Uri.parse(Constants.whatsappSupportNumber));
+                      _launchUrl(Uri.parse(Constants.whatsappSupportNumber));
                     },
                     child: Text(
                       S.of(context).support_text,
@@ -74,7 +75,9 @@ class IntroModal {
                   ),
                   const Spacer(),
                   Padding(
-                    padding: EdgeInsetsGeometry.symmetric(horizontal: size.width * 0.15),
+                    padding: EdgeInsetsGeometry.symmetric(
+                      horizontal: size.width * 0.15,
+                    ),
                     child: Text(
                       S.of(context).accumulate_bonuses_discounts,
                       style: Theme.of(context).textTheme.bodySmall,
@@ -82,19 +85,26 @@ class IntroModal {
                     ),
                   ),
                   const Spacer(),
-                  CustomButtonWidget(child: Text(S.of(context).enter_your_phone_number), onTap: () {
-                    PhoneNumberModal.modal(context);
-                  }),
+                  CustomButtonWidget(
+                    child: Text(S.of(context).enter_your_phone_number),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      PhoneNumberModal().modal(context);
+                    },
+                  ),
                   const Spacer(),
-                  TextButton(onPressed: () {
-                    LegalDocumentsModal.modal(context);
-                  }, child: Text(
-                    S.of(context).legal_documents_text,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      decoration: TextDecoration.underline,
+                  TextButton(
+                    onPressed: () {
+                      LegalDocumentsModal.modal(context);
+                    },
+                    child: Text(
+                      S.of(context).legal_documents_text,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        decoration: TextDecoration.underline,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
-                  )),
+                  ),
                   Text(
                     "${S.of(context).app_version} ${Constants.appVersion}",
                     style: Theme.of(context).textTheme.bodySmall,

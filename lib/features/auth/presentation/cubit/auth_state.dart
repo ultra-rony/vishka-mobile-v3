@@ -5,21 +5,29 @@ sealed class AuthState extends Equatable {
 }
 
 final class AuthInitialState extends AuthState {
+  const AuthInitialState();
+
   @override
   List<Object> get props => [];
 }
 
 final class AuthLoadingState extends AuthState {
+  const AuthLoadingState();
+
   @override
   List<Object> get props => [];
 }
 
 final class AuthPhoneSuccessState extends AuthState {
+  const AuthPhoneSuccessState();
+
   @override
   List<Object> get props => [];
 }
 
 final class AuthSmsSuccessState extends AuthState {
+  const AuthSmsSuccessState();
+
   @override
   List<Object> get props => [];
 }

@@ -128,6 +128,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Номер телефона`
+  String get phone_number_text {
+    return Intl.message(
+      'Номер телефона',
+      name: 'phone_number_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Продолжить`
+  String get continue_text {
+    return Intl.message(
+      'Продолжить',
+      name: 'continue_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Введите код из смс`
+  String get enter_code_text {
+    return Intl.message(
+      'Введите код из смс',
+      name: 'enter_code_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `на номер`
+  String get to_the_number_text {
+    return Intl.message(
+      'на номер',
+      name: 'to_the_number_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Получить новый код`
+  String get resend_sms_code {
+    return Intl.message(
+      'Получить новый код',
+      name: 'resend_sms_code',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

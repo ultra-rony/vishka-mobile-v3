@@ -32,6 +32,10 @@ import 'package:vishka_front_v3/features/auth/domain/repositories/user_repositor
     as _i903;
 import 'package:vishka_front_v3/features/auth/domain/user_cases/check_remote_sms_use_case.dart'
     as _i584;
+import 'package:vishka_front_v3/features/auth/domain/user_cases/delete_local_phone_number_use_case.dart'
+    as _i651;
+import 'package:vishka_front_v3/features/auth/domain/user_cases/put_local_phone_number_use_case.dart'
+    as _i1008;
 import 'package:vishka_front_v3/features/auth/domain/user_cases/send_remote_phone_number_use_case.dart'
     as _i926;
 import 'package:vishka_front_v3/features/auth/presentation/cubit/auth_cubit.dart'
@@ -42,6 +46,7 @@ import 'package:vishka_front_v3/features/basket/data/repositories/basket_reposit
     as _i391;
 import 'package:vishka_front_v3/features/basket/domain/repositories/basket_repository.dart'
     as _i547;
+import 'package:vishka_front_v3/features/home/cubit/home_cubit.dart' as _i409;
 import 'package:vishka_front_v3/features/splash/data/data_sources/iiko_remote_data_source.dart'
     as _i4;
 import 'package:vishka_front_v3/features/splash/data/data_sources/vishka_remote_data_source.dart'
@@ -60,8 +65,6 @@ import 'package:vishka_front_v3/features/splash/presentations/cubits/preload_cub
     as _i1044;
 import 'package:vishka_front_v3/shared/use_cases/delete_local_basket_product_use_case.dart'
     as _i684;
-import 'package:vishka_front_v3/shared/use_cases/delete_local_phone_number_use_case.dart'
-    as _i455;
 import 'package:vishka_front_v3/shared/use_cases/get_local_basket_products_use_case.dart'
     as _i1052;
 import 'package:vishka_front_v3/shared/use_cases/get_local_phone_number_use_case.dart'
@@ -72,8 +75,6 @@ import 'package:vishka_front_v3/shared/use_cases/get_remote_iiko_user_use_case.d
     as _i799;
 import 'package:vishka_front_v3/shared/use_cases/put_local_basket_product_use_case.dart'
     as _i463;
-import 'package:vishka_front_v3/shared/use_cases/put_local_phone_number_use_case.dart'
-    as _i614;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -120,8 +121,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i182.AuthRepository>(
       () => _i881.AuthRepositoryImpl(gh<_i773.AuthRemoteDataSource>()),
     );
-    gh.factory<_i455.DeleteLocalPhoneNumberUseCase>(
-      () => _i455.DeleteLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
+    gh.factory<_i651.DeleteLocalPhoneNumberUseCase>(
+      () => _i651.DeleteLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
+    );
+    gh.factory<_i1008.PutLocalPhoneNumberUseCase>(
+      () => _i1008.PutLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
     );
     gh.factory<_i301.GetLocalPhoneNumberUseCase>(
       () => _i301.GetLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
@@ -129,8 +133,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i799.GetRemoteIikoUserUseCase>(
       () => _i799.GetRemoteIikoUserUseCase(gh<_i903.UserRepository>()),
     );
-    gh.factory<_i614.PutLocalPhoneNumberUseCase>(
-      () => _i614.PutLocalPhoneNumberUseCase(gh<_i903.UserRepository>()),
+    gh.factory<_i409.HomeCubit>(
+      () => _i409.HomeCubit(gh<_i301.GetLocalPhoneNumberUseCase>()),
     );
     gh.lazySingleton<_i547.BasketRepository>(
       () => _i391.BasketRepositoryImpl(gh<_i503.BasketLocalDataSource>()),
@@ -154,6 +158,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i926.SendRemotePhoneNumberUseCase>(
       () => _i926.SendRemotePhoneNumberUseCase(gh<_i182.AuthRepository>()),
     );
+    gh.factory<_i634.AuthCubit>(
+      () => _i634.AuthCubit(
+        gh<_i926.SendRemotePhoneNumberUseCase>(),
+        gh<_i584.CheckRemoteSmsUseCase>(),
+        gh<_i1008.PutLocalPhoneNumberUseCase>(),
+        gh<_i974.Logger>(),
+      ),
+    );
     gh.factory<_i684.DeleteLocalBasketProductUseCase>(
       () => _i684.DeleteLocalBasketProductUseCase(gh<_i547.BasketRepository>()),
     );
@@ -162,13 +174,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i463.PutLocalBasketProductUseCase>(
       () => _i463.PutLocalBasketProductUseCase(gh<_i547.BasketRepository>()),
-    );
-    gh.factory<_i634.AuthCubit>(
-      () => _i634.AuthCubit(
-        gh<_i926.SendRemotePhoneNumberUseCase>(),
-        gh<_i584.CheckRemoteSmsUseCase>(),
-        gh<_i974.Logger>(),
-      ),
     );
     gh.factory<_i74.GetRemoteStopListUseCase>(
       () => _i74.GetRemoteStopListUseCase(gh<_i290.PreloadRepository>()),
