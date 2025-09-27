@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
+import 'package:vishka_front_v3/shared/use_cases/get_remote_stories_use_case.dart';
 import 'package:vishka_front_v3/shared/use_cases/preload/check_remote_app_version_use_case.dart';
 import 'package:vishka_front_v3/shared/use_cases/preload/get_remote_nomenclature_use_case.dart';
 import 'package:vishka_front_v3/shared/use_cases/preload/get_remote_stop_list_use_case.dart';
@@ -24,6 +25,7 @@ class HomeCubit extends Cubit<HomeState> {
   final GetRemoteStopListUseCase _getRemoteStopListUseCase;
   final GetRemoteIikoUserUseCase _getRemoteIikoUserUseCase;
   final GetLocalPhoneNumberUseCase _getLocalPhoneNumberUseCase;
+  final GetRemoteStoriesUseCase _getRemoteStoriesUseCase;
 
   HomeCubit(
     this._logger,
@@ -33,6 +35,7 @@ class HomeCubit extends Cubit<HomeState> {
     this._getRemoteStopListUseCase,
     this._getRemoteIikoUserUseCase,
     this._getLocalPhoneNumberUseCase,
+    this._getRemoteStoriesUseCase,
   ) : super(const HomeInitialState());
 
   @override
@@ -63,6 +66,7 @@ class HomeCubit extends Cubit<HomeState> {
         );
         user = iikoUser.data;
       }
+      final stories = await _getRemoteStoriesUseCase();
       emit(HomeDataState(nomenclature.data, stopList.data, user));
     } catch (e) {
       emit(const HomeErrorState(""));

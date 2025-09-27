@@ -9,22 +9,40 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i2;
+import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:vishka_front_v3/features/home/presentation/home_page.dart'
     as _i1;
+import 'package:vishka_front_v3/features/stories/presentation/pages/stories_page.dart'
+    as _i2;
 
 /// generated route for
 /// [_i1.HomePage]
-class HomeRoute extends _i2.PageRouteInfo<void> {
-  const HomeRoute({List<_i2.PageRouteInfo>? children})
+class HomeRoute extends _i3.PageRouteInfo<void> {
+  const HomeRoute({List<_i3.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i2.PageInfo page = _i2.PageInfo(
+  static _i3.PageInfo page = _i3.PageInfo(
     name,
     builder: (data) {
       return const _i1.HomePage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i2.StoriesPage]
+class StoriesRoute extends _i3.PageRouteInfo<void> {
+  const StoriesRoute({List<_i3.PageRouteInfo>? children})
+    : super(StoriesRoute.name, initialChildren: children);
+
+  static const String name = 'StoriesRoute';
+
+  static _i3.PageInfo page = _i3.PageInfo(
+    name,
+    builder: (data) {
+      return const _i2.StoriesPage();
     },
   );
 }

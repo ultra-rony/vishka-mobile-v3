@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vishka_front_v3/core/routes/app_router.gr.dart';
 import 'package:vishka_front_v3/features/auth/presentation/modals/intro_modal.dart';
 import 'package:vishka_front_v3/features/home/cubit/home_cubit.dart';
 
@@ -41,6 +42,15 @@ class HomePage extends StatelessWidget {
                       IntroModal.modal(context);
                     },
                     child: const Text("Profile"),
+                  ),
+                ),
+                const SizedBox(height: 100),
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      context.pushRoute(const StoriesRoute());
+                    },
+                    child: const Text("Stories"),
                   ),
                 ),
               ],
