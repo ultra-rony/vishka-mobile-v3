@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:vishka_front_v3/core/use_cases/generic_use_case.dart';
 import 'package:vishka_front_v3/core/utils/constants.dart';
-import 'package:vishka_front_v3/features/splash/domain/repositories/preload_repository.dart';
+import 'package:vishka_front_v3/features/preload/domain/repositories/preload_repository.dart';
 
 @injectable
 class CheckRemoteAppVersionUseCase implements GenericUseCase<bool, void> {

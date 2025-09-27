@@ -11,7 +11,7 @@ import 'package:vishka_front_v3/features/auth/domain/user_cases/put_remote_iiko_
 import 'package:vishka_front_v3/features/auth/domain/user_cases/send_remote_phone_number_use_case.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/subscribe_remote_iiko_user_program_use_case.dart';
 import 'package:vishka_front_v3/shared/entities/user/user_entity.dart';
-import 'package:vishka_front_v3/shared/use_cases/get_remote_access_token_use_case.dart';
+import 'package:vishka_front_v3/shared/use_cases/preload/get_remote_access_token_use_case.dart';
 import 'package:vishka_front_v3/shared/use_cases/get_remote_iiko_user_use_case.dart';
 
 part 'auth_state.dart';
@@ -69,13 +69,12 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> onCheckSms(String phone, sms) async {
     emit(const AuthLoadingState());
     try {
+      // Проверяем смс код
       await _checkRemoteSmsUseCase(params: {'phone': phone, 'sms': sms});
       final accessToken = await _getRemoteAccessTokenUseCase();
       final userMap = {'token': accessToken.data?.token, 'phone': phone};
       // Создаем пользователя в ИИко
-      await _putRemoteIikoUserUseCase(params: userMap);
-      // Получаем данные пользователя ИИко
-      final iikoUserInfo = await _getRemoteIikoUserUseCase(params: userMap);
+      final userId = await _putRemoteIikoUserUseCase(params: userMap);
       // Получаем все программы лояльности ИИко
       final programs = await _getRemoteIikoUserProgramsUseCase(
         params: userMap['token'],
@@ -93,10 +92,12 @@ class AuthCubit extends Cubit<AuthState> {
           params: {
             'token': userMap['token'],
             'program_id': foundProgram?.id,
-            'customer_id': iikoUserInfo.data?.id,
+            'customer_id': userId.data,
           },
         );
       }
+      // Получаем данные пользователя ИИко
+      final iikoUserInfo = await _getRemoteIikoUserUseCase(params: userMap);
       emit(AuthSmsSuccessState(iikoUserInfo.data));
     } catch (_) {
       emit(const AuthErrorState('Unexpected error occurred'));

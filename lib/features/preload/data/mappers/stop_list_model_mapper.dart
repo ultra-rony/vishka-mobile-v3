@@ -1,4 +1,4 @@
-import 'package:vishka_front_v3/features/splash/data/models/stop_list/stop_list_model.dart';
+import 'package:vishka_front_v3/features/preload/data/models/stop_list/stop_list_model.dart';
 import 'package:vishka_front_v3/shared/entities/stop_list/stop_list_entity.dart';
 
 extension StopListModelMapper on StopListModel {
