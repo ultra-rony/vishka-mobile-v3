@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:vishka_front_v3/core/states/network_data_state.dart';
+import 'package:vishka_front_v3/core/network/network_data_state.dart';
 import 'package:vishka_front_v3/features/splash/data/data_sources/iiko_remote_data_source.dart';
 import 'package:vishka_front_v3/features/splash/data/data_sources/vishka_remote_data_source.dart';
 import 'package:vishka_front_v3/features/splash/data/mappers/access_token_model_mapper.dart';

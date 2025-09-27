@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vishka_front_v3/core/states/network_data_state.dart';
+import 'package:vishka_front_v3/core/network/network_data_state.dart';
 import 'package:vishka_front_v3/core/use_cases/generic_use_case.dart';
 import 'package:vishka_front_v3/features/splash/data/mappers/access_token_model_mapper.dart';
 import 'package:vishka_front_v3/features/splash/data/models/access_token/access_token_model.dart';

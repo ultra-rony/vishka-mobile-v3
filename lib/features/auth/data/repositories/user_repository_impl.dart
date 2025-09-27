@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:vishka_front_v3/core/states/network_data_state.dart';
+import 'package:vishka_front_v3/core/network/network_data_state.dart';
 import 'package:vishka_front_v3/features/auth/data/data_sources/local/user_local_data_source.dart';
 import 'package:vishka_front_v3/features/auth/data/data_sources/remote/user_remote_data_source.dart';
 import 'package:vishka_front_v3/features/auth/data/mappers/program_model_mapper.dart';

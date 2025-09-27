@@ -1,4 +1,4 @@
-import 'package:vishka_front_v3/core/states/network_data_state.dart';
+import 'package:vishka_front_v3/core/network/network_data_state.dart';
 import 'package:vishka_front_v3/features/auth/domain/entities/program_entity.dart';
 import 'package:vishka_front_v3/shared/entities/user/user_entity.dart';
 
