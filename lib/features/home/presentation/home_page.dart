@@ -28,12 +28,7 @@ class HomePage extends StatelessWidget {
               children: [
                 const SizedBox(height: 100),
                 Center(
-                  child: TextButton(
-                    onPressed: () {
-                      IntroModal.modal(context);
-                    },
-                    child: const Text("Map"),
-                  ),
+                  child: TextButton(onPressed: () {}, child: const Text("Map")),
                 ),
                 const SizedBox(height: 100),
                 Center(
@@ -41,14 +36,18 @@ class HomePage extends StatelessWidget {
                     onPressed: () {
                       IntroModal.modal(context);
                     },
-                    child: const Text("Profile"),
+                    child: const Text("Auth"),
                   ),
                 ),
                 const SizedBox(height: 100),
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      context.pushRoute(const StoriesRoute());
+                      if (state is HomeDataState) {
+                        context.pushRoute(
+                          StoriesRoute(stories: state.stories!.last.stories!),
+                        );
+                      }
                     },
                     child: const Text("Stories"),
                   ),

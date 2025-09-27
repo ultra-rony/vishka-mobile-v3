@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:story_view/controller/story_controller.dart';
 import 'package:story_view/utils.dart';
 import 'package:story_view/widgets/story_view.dart';
+import 'package:vishka_front_v3/shared/entities/story/story_entity.dart';
 
 @RoutePage()
 class StoriesPage extends StatefulWidget {
-  const StoriesPage({super.key});
+  final List<StoryEntity> stories;
+
+  const StoriesPage({super.key, required this.stories});
 
   @override
   createState() => _StoriesPageState();
@@ -24,27 +27,20 @@ class _StoriesPageState extends State<StoriesPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final items = [
-      StoryItem.pageImage(
-        controller: _controller,
-        url: 'https://i.ibb.co/NrLSbZv/Screenshot-1584263018.png',
-      ),
-      StoryItem.pageImage(
-        controller: _controller,
-        url: 'https://i.ibb.co/NrLSbZv/Screenshot-1584263018.png',
-      ),
-      StoryItem.pageImage(
-        controller: _controller,
-        url: 'https://i.ibb.co/NrLSbZv/Screenshot-1584263018.png',
-      ),
-    ];
     return Scaffold(
       body: SafeArea(
         child: Stack(
           children: [
             Positioned.fill(
               child: StoryView(
-                storyItems: items,
+                storyItems: [
+                  for (var item in widget.stories)
+                    StoryItem.pageImage(
+                      imageFit: BoxFit.fitWidth,
+                      url: item.imageUrl ?? "",
+                      controller: _controller,
+                    ),
+                ],
                 controller: _controller,
                 repeat: false,
                 indicatorOuterPadding: EdgeInsets.only(

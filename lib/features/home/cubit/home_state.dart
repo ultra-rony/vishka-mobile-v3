@@ -15,26 +15,30 @@ final class HomeDataState extends HomeState {
   final NomenclatureEntity? nomenclature;
   final List<StopListEntity>? stopList;
   final UserEntity? user;
+  final List<StoryCategoryEntity>? stories;
 
   const HomeDataState(
     this.nomenclature,
     this.stopList,
     this.user,
+    this.stories,
   );
 
   @override
-  List<Object?> get props => [nomenclature, stopList, user];
+  List<Object?> get props => [nomenclature, stopList, user, stories];
 
   HomeDataState copyWith({
     NomenclatureEntity? nomenclature,
     List<StopListEntity>? stopList,
     AccessTokenEntity? accessToken,
     UserEntity? user,
+    List<StoryCategoryEntity>? stories,
   }) {
     return HomeDataState(
       nomenclature ?? this.nomenclature,
       stopList ?? this.stopList,
       user ?? this.user,
+      stories ?? this.stories,
     );
   }
 }
