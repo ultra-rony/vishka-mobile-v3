@@ -2,9 +2,14 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
+import 'package:vishka_front_v3/core/utils/constants.dart';
+import 'package:vishka_front_v3/features/auth/domain/entities/program_entity.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/check_remote_sms_use_case.dart';
+import 'package:vishka_front_v3/features/auth/domain/user_cases/get_remote_iiko_user_programs_use_case.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/put_local_phone_number_use_case.dart';
+import 'package:vishka_front_v3/features/auth/domain/user_cases/put_remote_iiko_user_use_case.dart';
 import 'package:vishka_front_v3/features/auth/domain/user_cases/send_remote_phone_number_use_case.dart';
+import 'package:vishka_front_v3/features/auth/domain/user_cases/subscribe_remote_iiko_user_program_use_case.dart';
 import 'package:vishka_front_v3/shared/entities/user/user_entity.dart';
 import 'package:vishka_front_v3/shared/use_cases/get_remote_access_token_use_case.dart';
 import 'package:vishka_front_v3/shared/use_cases/get_remote_iiko_user_use_case.dart';
@@ -19,6 +24,10 @@ class AuthCubit extends Cubit<AuthState> {
   final PutLocalPhoneNumberUseCase _putLocalPhoneNumberUseCase;
   final GetRemoteIikoUserUseCase _getRemoteIikoUserUseCase;
   final GetRemoteAccessTokenUseCase _getRemoteAccessTokenUseCase;
+  final PutRemoteIikoUserUseCase _putRemoteIikoUserUseCase;
+  final GetRemoteIikoUserProgramsUseCase _getRemoteIikoUserProgramsUseCase;
+  final SubscribeRemoteIikoUserProgramUseCase
+  _subscribeRemoteIikoUserProgramUseCase;
 
   AuthCubit(
     this._logger,
@@ -27,6 +36,9 @@ class AuthCubit extends Cubit<AuthState> {
     this._putLocalPhoneNumberUseCase,
     this._getRemoteIikoUserUseCase,
     this._getRemoteAccessTokenUseCase,
+    this._putRemoteIikoUserUseCase,
+    this._getRemoteIikoUserProgramsUseCase,
+    this._subscribeRemoteIikoUserProgramUseCase,
   ) : super(const AuthInitialState());
 
   @override
@@ -58,12 +70,34 @@ class AuthCubit extends Cubit<AuthState> {
     emit(const AuthLoadingState());
     try {
       await _checkRemoteSmsUseCase(params: {'phone': phone, 'sms': sms});
-      /// TODO Добавление пользователя в iiko
       final accessToken = await _getRemoteAccessTokenUseCase();
-      final iikoUser = await _getRemoteIikoUserUseCase(
-        params: {'token': accessToken.data?.token, 'phone': phone},
+      final userMap = {'token': accessToken.data?.token, 'phone': phone};
+      // Создаем пользователя в ИИко
+      await _putRemoteIikoUserUseCase(params: userMap);
+      // Получаем данные пользователя ИИко
+      final iikoUserInfo = await _getRemoteIikoUserUseCase(params: userMap);
+      // Получаем все программы лояльности ИИко
+      final programs = await _getRemoteIikoUserProgramsUseCase(
+        params: userMap['token'],
       );
-      emit(AuthSmsSuccessState(iikoUser.data));
+      // Выбираем программу лояльности по умолчанию
+      ProgramEntity? foundProgram;
+      programs.data?.forEach((program) {
+        if (program.id == Constants.iikoDefaultProgramId) {
+          foundProgram = program;
+        }
+      });
+      // Подписываемся на программу лояльности ИИко
+      if (foundProgram != null) {
+        await _subscribeRemoteIikoUserProgramUseCase(
+          params: {
+            'token': userMap['token'],
+            'program_id': foundProgram?.id,
+            'customer_id': iikoUserInfo.data?.id,
+          },
+        );
+      }
+      emit(AuthSmsSuccessState(iikoUserInfo.data));
     } catch (_) {
       emit(const AuthErrorState('Unexpected error occurred'));
     }

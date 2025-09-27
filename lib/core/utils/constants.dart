@@ -11,6 +11,7 @@ class Constants {
 
   static String? iikoApiKey = dotenv.env['IIKO_API_KEY'];
   static String? iikoOrganizationId = dotenv.env['IIKO_ORGANIZATION_ID'];
+  static String? iikoDefaultProgramId = dotenv.env['IIKO_DEFAULT_PROGRAM_ID'];
 
   static String whatsappSupportNumber =
       "https://api.whatsapp.com/send/?phone=79142408997&text=Здравствуйте%21+Пишу+из+приложения+Вышка&type=phone_number&app_absent=0";
